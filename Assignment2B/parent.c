@@ -5,31 +5,10 @@
 #include <unistd.h>
 #include <stdbool.h>
 
-void sort_array(int array[] , int size)
+int compare (const void * a, const void * b)
 {
-    /*
-     *  Input   :   Integer Array, size of array.
-     *  Utility :   Sort contents of integer array using bubble sort.
-     *  Output  :   None.
-     */
-    int i, temp;
-    bool swapped = false;
-    do
-    {
-        swapped = false;
-        for(i = 0; i < size - 1; i++)
-        {
-            if(array[i] > array[i+1])
-            {
-                temp = array[i];
-                array[i] = array[i+1];
-                array[i+1] = temp;
-                swapped = true;
-            }
-        }
-    }while(swapped);
+  return ( *(int*)a - *(int*)b );
 }
-
 
 int main()
 {
@@ -45,7 +24,7 @@ int main()
     scanf("%d", &key);
     
     // Sort array and display
-    sort_array(arr, 5);
+    qsort(arr, 5, sizeof(int), compare);
     printf("\nSorted Array : ");
     for(i = 0; i < 5; i++)
     {
